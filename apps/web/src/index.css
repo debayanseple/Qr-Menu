@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* Phase 0 placeholder theme — dark-friendly defaults for dim restaurant light. */
+:root {
+  color-scheme: light dark;
+}
