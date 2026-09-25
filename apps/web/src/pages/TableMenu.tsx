@@ -21,14 +21,30 @@ function hueFor(id: string): number {
   return h;
 }
 
-/** Decorative photo placeholder until real item photos land (Phase 2 admin). */
+/** Item photo with graceful gradient fallback. */
 function ItemImage({ item }: { item: DemoMenuItem }): JSX.Element {
+  const [imgError, setImgError] = useState(false);
   const hue = hueFor(item.id);
   const hue2 = (hue + 40) % 360;
+
+  if (item.image && !imgError) {
+    return (
+      <div className="relative h-44 w-full overflow-hidden rounded-lg bg-neutral-100 dark:bg-neutral-800">
+        <img
+          src={item.image}
+          alt={item.name}
+          loading="lazy"
+          className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+          onError={() => setImgError(true)}
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       aria-hidden="true"
-      className="flex h-32 items-center justify-center rounded-lg"
+      className="flex h-44 items-center justify-center rounded-lg"
       style={{
         background: `linear-gradient(135deg, hsl(${hue}, 60%, 85%), hsl(${hue2}, 60%, 70%))`,
       }}
@@ -193,9 +209,19 @@ function CartSheet({
                 className="rounded-xl border border-neutral-200 p-3 dark:border-neutral-800"
               >
                 <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <p className="font-semibold">{item.name}</p>
-                    <p className="text-sm opacity-70">{formatPaise(item.pricePaise)} each</p>
+                  <div className="flex items-center gap-3">
+                    {item.image && (
+                      <img
+                        src={item.image}
+                        alt=""
+                        aria-hidden="true"
+                        className="h-12 w-12 shrink-0 rounded-lg object-cover"
+                      />
+                    )}
+                    <div>
+                      <p className="font-semibold">{item.name}</p>
+                      <p className="text-sm opacity-70">{formatPaise(item.pricePaise)} each</p>
+                    </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <button

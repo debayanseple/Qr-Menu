@@ -16,6 +16,7 @@
 - [x] Web skeleton (Vite + React + Tailwind + Router) with placeholder pages
 - [x] Root scripts: `dev`, `build`, `lint`, `test`
 - [x] README with setup steps
+- [x] Generate and integrate realistic food & beverage images for all 13 demo menu cards
 - [x] **Phase 0 Summary written, awaiting approval**
 
 ## Phase 1 — Data model and auth

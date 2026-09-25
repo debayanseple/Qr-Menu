@@ -3,6 +3,7 @@ dist/
 build/
 coverage/
 postgres-data/
+.kilo/
 docs/PRD-QR-Table-Ordering.md
 docs/prompt.md
 docs/TODO.md

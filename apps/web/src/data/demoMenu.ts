@@ -18,6 +18,7 @@ export interface DemoMenuItem {
   veg: boolean;
   tags: string[];
   available: boolean;
+  image?: string;
 }
 
 export const DEMO_CATEGORIES: DemoCategory[] = [
@@ -39,6 +40,7 @@ export const DEMO_ITEMS: DemoMenuItem[] = [
     veg: true,
     tags: ["spicy"],
     available: true,
+    image: "/images/items/paneer-tikka.jpg",
   },
   {
     id: "chicken-65",
@@ -50,6 +52,7 @@ export const DEMO_ITEMS: DemoMenuItem[] = [
     veg: false,
     tags: ["spicy", "non-veg"],
     available: true,
+    image: "/images/items/chicken-65.jpg",
   },
   {
     id: "masala-fries",
@@ -61,6 +64,7 @@ export const DEMO_ITEMS: DemoMenuItem[] = [
     veg: true,
     tags: ["veg"],
     available: true,
+    image: "/images/items/masala-fries.jpg",
   },
   {
     id: "butter-chicken",
@@ -72,6 +76,7 @@ export const DEMO_ITEMS: DemoMenuItem[] = [
     veg: false,
     tags: ["non-veg", "contains-dairy"],
     available: true,
+    image: "/images/items/butter-chicken.jpg",
   },
   {
     id: "paneer-butter-masala",
@@ -83,6 +88,7 @@ export const DEMO_ITEMS: DemoMenuItem[] = [
     veg: true,
     tags: ["veg", "contains-dairy", "contains-nuts"],
     available: true,
+    image: "/images/items/paneer-butter-masala.jpg",
   },
   {
     id: "chicken-biryani",
@@ -94,6 +100,7 @@ export const DEMO_ITEMS: DemoMenuItem[] = [
     veg: false,
     tags: ["non-veg", "spicy"],
     available: false,
+    image: "/images/items/chicken-biryani.jpg",
   },
   {
     id: "garlic-naan",
@@ -105,6 +112,7 @@ export const DEMO_ITEMS: DemoMenuItem[] = [
     veg: true,
     tags: ["veg", "contains-gluten", "contains-dairy"],
     available: true,
+    image: "/images/items/garlic-naan.jpg",
   },
   {
     id: "gulab-jamun",
@@ -116,6 +124,7 @@ export const DEMO_ITEMS: DemoMenuItem[] = [
     veg: true,
     tags: ["veg", "contains-dairy"],
     available: true,
+    image: "/images/items/gulab-jamun.jpg",
   },
   {
     id: "kulfi-falooda",
@@ -127,6 +136,7 @@ export const DEMO_ITEMS: DemoMenuItem[] = [
     veg: true,
     tags: ["veg", "contains-dairy"],
     available: true,
+    image: "/images/items/kulfi-falooda.jpg",
   },
   {
     id: "mango-lassi",
@@ -138,6 +148,7 @@ export const DEMO_ITEMS: DemoMenuItem[] = [
     veg: true,
     tags: ["veg", "contains-dairy"],
     available: true,
+    image: "/images/items/mango-lassi.jpg",
   },
   {
     id: "masala-shikanji",
@@ -149,6 +160,7 @@ export const DEMO_ITEMS: DemoMenuItem[] = [
     veg: true,
     tags: ["veg"],
     available: true,
+    image: "/images/items/masala-shikanji.jpg",
   },
   {
     id: "virgin-mojito",
@@ -160,6 +172,7 @@ export const DEMO_ITEMS: DemoMenuItem[] = [
     veg: true,
     tags: ["veg", "no-ice-option"],
     available: true,
+    image: "/images/items/virgin-mojito.jpg",
   },
   {
     id: "blue-lagoon",
@@ -171,11 +184,14 @@ export const DEMO_ITEMS: DemoMenuItem[] = [
     veg: true,
     tags: ["veg"],
     available: true,
+    image: "/images/items/blue-lagoon.jpg",
   },
 ];
 
-/** Demo table label for the sample token used on the home page. */
+/** Demo table label for the sample tokens (demo-table-N → Table N). */
 export function demoTableLabel(token: string | undefined): string {
-  if (token === "demo-table-7") return "Table 7";
-  return token ? `Table · ${token}` : "Table";
+  if (!token) return "Table";
+  const match = /^demo-table-(\d+)$/.exec(token);
+  if (match) return `Table ${match[1]}`;
+  return `Table · ${token}`;
 }
